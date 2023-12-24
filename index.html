@@ -8,7 +8,7 @@
       try {
         const response = await fetch('/api/randomNumber', {
           headers: {
-            'Cache-Control': 'no-cache', // 强制不使用缓存
+            'Cache-Control': 'no-cache', 
           },
         });
         const data = await response.json();
