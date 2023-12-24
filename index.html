@@ -1,9 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
   <meta charset="UTF-8">
   <title>Random 8-Digit Number</title>
   <script>
     async function fetchRandomNumber() {
       try {
-        const response = await fetch('/api/randomNumber');
+        const response = await fetch('/api/randomNumber', {
+          headers: {
+            'Cache-Control': 'no-cache', // 强制不使用缓存
+          },
+        });
         const data = await response.json();
         document.getElementById('randomNumber').innerText = data.number;
       } catch (error) {
