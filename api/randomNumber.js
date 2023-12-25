@@ -1,11 +1,11 @@
-let cachedNumber = getCachedNumber(); // »ñÈ¡»º´æµÄËæ»úÊı
-let lastGeneratedTime = getCachedTime(); // »ñÈ¡»º´æµÄÊ±¼ä
+let cachedNumber = getCachedNumber(); // è·å–ç¼“å­˜çš„éšæœºæ•°
+let lastGeneratedTime = getCachedTime(); // è·å–ç¼“å­˜çš„æ—¶é—´
 
 export default async function handler(req, res) {
   const currentTime = new Date().getTime();
-  const oneHour = 3600000; // 1Ğ¡Ê±µÄºÁÃëÊı
+  const oneHour = 3600000; // 1å°æ—¶çš„æ¯«ç§’æ•°
 
-  // Èç¹û¾àÉÏ´ÎÉú³ÉÊ±¼äÒÑ¾­¹ıÈ¥ÁË1Ğ¡Ê±£¬ÔòÉú³ÉĞÂµÄËæ»úÊı
+  // å¦‚æœè·ä¸Šæ¬¡ç”Ÿæˆæ—¶é—´å·²ç»è¿‡å»äº†1å°æ—¶ï¼Œåˆ™ç”Ÿæˆæ–°çš„éšæœºæ•°
   if (currentTime - lastGeneratedTime > oneHour) {
     cachedNumber = generateRandomNumber();
     lastGeneratedTime = currentTime;
@@ -13,30 +13,31 @@ export default async function handler(req, res) {
     cacheTime(lastGeneratedTime);
   }
 
-  res.setHeader('Cache-Control', 'no-store'); // ½ûÓÃ»º´æ
-  res.status(200).json({ number: cachedNumber });
+  res.setHeader('Cache-Control', 'no-store'); // ç¦ç”¨ç¼“å­˜
+  //res.status(200).json({ number: cachedNumber });
+  res.status(200).send( cachedNumber );
 }
 
 function getCachedNumber() {
-  // ´Ó³Ö¾Ã»¯´æ´¢£¨ÀıÈçÊı¾İ¿â£©ÖĞ»ñÈ¡»º´æµÄËæ»úÊı
-  // ÕâÀï¼ò»¯ÎªÖ±½ÓÉú³ÉÒ»¸öËæ»úÊı
+  // ä»æŒä¹…åŒ–å­˜å‚¨ï¼ˆä¾‹å¦‚æ•°æ®åº“ï¼‰ä¸­è·å–ç¼“å­˜çš„éšæœºæ•°
+  // è¿™é‡Œç®€åŒ–ä¸ºç›´æ¥ç”Ÿæˆä¸€ä¸ªéšæœºæ•°
   return generateRandomNumber();
 }
 
 function getCachedTime() {
-  // ´Ó³Ö¾Ã»¯´æ´¢£¨ÀıÈçÊı¾İ¿â£©ÖĞ»ñÈ¡»º´æµÄÊ±¼ä
-  // ÕâÀï¼ò»¯Îª·µ»Øµ±Ç°Ê±¼ä
+  // ä»æŒä¹…åŒ–å­˜å‚¨ï¼ˆä¾‹å¦‚æ•°æ®åº“ï¼‰ä¸­è·å–ç¼“å­˜çš„æ—¶é—´
+  // è¿™é‡Œç®€åŒ–ä¸ºè¿”å›å½“å‰æ—¶é—´
   return new Date().getTime();
 }
 
 function cacheNumber(number) {
-  // ½«Ëæ»úÊı´æ´¢µ½³Ö¾Ã»¯´æ´¢ÖĞ
-  // ÕâÀï¼ò»¯ÎªÎŞ²Ù×÷
+  // å°†éšæœºæ•°å­˜å‚¨åˆ°æŒä¹…åŒ–å­˜å‚¨ä¸­
+  // è¿™é‡Œç®€åŒ–ä¸ºæ— æ“ä½œ
 }
 
 function cacheTime(time) {
-  // ½«Ê±¼ä´æ´¢µ½³Ö¾Ã»¯´æ´¢ÖĞ
-  // ÕâÀï¼ò»¯ÎªÎŞ²Ù×÷
+  // å°†æ—¶é—´å­˜å‚¨åˆ°æŒä¹…åŒ–å­˜å‚¨ä¸­
+  // è¿™é‡Œç®€åŒ–ä¸ºæ— æ“ä½œ
 }
 
 function generateRandomNumber() {
