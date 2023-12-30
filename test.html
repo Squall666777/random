@@ -12,7 +12,7 @@
           },
         });
         const data = await response.json();
-        document.getElementById('randomNumber').innerText = data.number;
+        document.getElementById('randomNumber').innerText = data;
       } catch (error) {
         console.error('Error fetching random number:', error);
       }
