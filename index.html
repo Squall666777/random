@@ -3,29 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Random 8-Digit Number</title>
-  <script>
-    async function fetchRandomNumber() {
-      try {
-        const response = await fetch('/api/randomNumber', {
-          headers: {
-            'Cache-Control': 'no-cache', // 强制不使用缓存
-          },
-        });
-        const data = await response.send();
-        document.getElementById('randomNumber').innerText = number;
-      } catch (error) {
-        console.error('Error fetching random number:', error);
-      }
-    }
-
-    // Fetch the random number when the page loads
-    window.onload = function() {
-      fetchRandomNumber();
-      setInterval(fetchRandomNumber, 60000); // Check every minute (60000 milliseconds)
-    };
-  </script>
 </head>
 <body>
-  <p id="randomNumber"></p>
+    <h1>维护中.....</h1>
 </body>
 </html>
