@@ -11,8 +11,8 @@
             'Cache-Control': 'no-cache', // 强制不使用缓存
           },
         });
-        const data = await response.json();
-        document.getElementById('randomNumber').innerText = data.number;
+        const data = await response.send();
+        document.getElementById('randomNumber').innerText = number;
       } catch (error) {
         console.error('Error fetching random number:', error);
       }
